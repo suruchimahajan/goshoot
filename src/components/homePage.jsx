@@ -36,7 +36,8 @@ render(){
         style={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          width: "window.innerWidth"
         }}
       >
             <Image src="./logo490.png" rounded />
