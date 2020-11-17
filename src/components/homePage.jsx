@@ -1,35 +1,26 @@
 import React, {Component} from "react";
-import {Container,Col, Row, Button, Image, Form} from "react-bootstrap";
-import Upload from "./upload";
+import {Container,Button, Image} from "react-bootstrap";
+import UploadModal from "./uploadModal";
 
 
-
+{/*tIt is the first component of the App, where brand logo, take and upload picture buttons are placed**/}
 class Home extends Component{
 
+/** setting up the state for the communication**/
+  state=
+  {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-        show: false
-    }
-}
+    show: false 
+  };
 
 
-upload(){
+upload = () =>{
 
-  this.setState({
-    show:true
-   
-  })
+  this.setState({ show:true });
+
+  console.log(this.state.show);
   
-//   return(
-//   <Form>
-//   <Form.Group>
-//     <Form.File id="uploadFile" label="Example file input" />
-//   </Form.Group>
-// </Form>
-//   );
-}
+};
 
 
 
@@ -37,39 +28,58 @@ render(){
 
     return(
         <React.Fragment>
-        <Container>
-        <Row>
-        <Col md={{ span: 3, offset: 3 }}>
+
+          {/* hidding and visibling the  component according to show value */}
+
+       {!this.state.show && <Container>
+        <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
             <Image src="./logo490.png" rounded />
-      </Col>
-      </Row>
-      <Row id="rUpload" >
-      <Col md={{ span: 6, offset: 3 }}> 
-      <Button className="m-1" size='lg' onClick={this.upload}>Upload Picture
-      </Button> 
-      </Col>
-      </Row>
-    {/**<ButtonGroup className="m-4" size='lg' vertical>
-          
-           <Button >Upload Image</Button> 
-           <Button className="m-1" >Take Selfie</Button> 
-    </ButtonGroup > */}
-      
+            
+      </div>
      
-      <Row id="rTake" >
-      <Col md={{ span: 6, offset: 3 }}> 
-      <Button   size='lg'>Take Selfie
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop:30
+          
+        }}
+      >
+      <Button className="m-2" size='lg' onClick={this.upload}>Upload Picture
       </Button> 
-      </Col>
-        </Row>
+      </div>
+      
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        
+        }}
+      >
+      
+      <Button  className="m-1" size='lg'>Uplaod Selfie    
+      </Button> 
+      
+      </div> 
       
 
       </Container>
-      
-      upload<Upload show={this.state.show}/>
+      } 
+      {/*  end of first component */}
+
+      {/*start of another component  */}
+       {this.state.show && <UploadModal value={this.state.show} /> } 
         </React.Fragment>
         
-
+      /*  end of second component */
     );
 }
 
